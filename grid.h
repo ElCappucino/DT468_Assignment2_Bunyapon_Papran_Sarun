@@ -65,6 +65,7 @@ class Grid {
 
   /**
    * @brief Restores the cell to its initial state.
+   * @post hasBomb == false, isOpen == false, marked == false, neighborBombCount == 0
    */
   void reset();
 

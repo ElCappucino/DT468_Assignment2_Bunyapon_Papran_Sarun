@@ -26,6 +26,10 @@ class MineSweeperTable {
    * @brief Constructor for a new Minesweeper boards.
    * @param n The number of row and column (board is n x n).
    * @param bombNo The number of bombs in the maps.
+   * @pre n > 0
+   * @pre bombNo > 0 && bombNo < n * n
+   * @post rows == n && cols == n
+   * @post bombCount == bombNo
    */
   MineSweeperTable(int n, int bombNo);
 
@@ -49,6 +53,12 @@ class MineSweeperTable {
   
   /**
    * @brief Sets up a new game session.
+   * @pre rows > 0 && cols > 0
+   * @pre bombCount > 0 && bombCount < rows * cols
+   * @post gameOver == false
+   * @post win == false
+   * @post exactly bombCount bombs are placed
+   * @post all non-bomb cells have correct neighbor counts
    */
   void initialize();
 
@@ -66,6 +76,7 @@ class MineSweeperTable {
 
   /**
    * @brief Place bombs randomly in the grid with the amount of bombCount.
+   * @pre bombCount > 0
    */
   void placeBombs();
 
@@ -78,6 +89,11 @@ class MineSweeperTable {
    * @brief Attempts to reveal a cell at (r, c).
    * @param r Row index.
    * @param c Column index.
+   * @pre isValid(r, c)
+   * @pre gameOver == false
+   * @post if cell contains bomb then gameOver == true
+   * @post if cell does not contain bomb then cell is opened
+   * @post if opened cell has 0 neighbors then adjacent cells may be opened
    */
   void openCell(int r, int c);
 
@@ -85,11 +101,17 @@ class MineSweeperTable {
    * @brief Recursively open an empty adjacent cells.
    * @param r Row index.
    * @param c Column index.
+   * @pre isValid(r, c)
    */
   void recursiveOpen(int r, int c);
 
   /**
    * @brief Toggle a flag on the cell.
+   * @param r Row index.
+   * @param c Column index.
+   * @pre isValid(r, c)
+   * @pre cell is not open
+   * @post marked state is toggled
    */
   void toggleMark(int r, int c);
 
