@@ -30,7 +30,6 @@ void Grid::setBomb(bool b){
     checkInvariant();
 }
 
-
 void Grid::setOpen(){
 
     // pre condition
@@ -50,7 +49,6 @@ void Grid::setMarked(bool m){
 
     checkInvariant();
 }
-
 
 void Grid::setNeighborBombCount(int n){
     // pre condition

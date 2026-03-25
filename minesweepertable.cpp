@@ -76,6 +76,9 @@ void MineSweeperTable::reset(){
 }
 bool MineSweeperTable::isValid(int r, int c) const{
 
+    // Pre condition
+    assert(rows > 0 && cols > 0);
+
     if (r >= rows || r < 0 || c >= cols || c < 0)
     {
         return false;
@@ -84,7 +87,10 @@ bool MineSweeperTable::isValid(int r, int c) const{
 }
 void MineSweeperTable::placeBombs(){
 
+    // Pre condition
     assert(bombCount > 0);
+    assert(rows > 0 && cols > 0);
+
     int placed = 0;
     while (placed < bombCount) {
         int r = rand() % rows;
@@ -100,6 +106,9 @@ void MineSweeperTable::placeBombs(){
 }
 void MineSweeperTable::calculateNeighbors(){
     
+    // Pre condition
+    assert(rows > 0 && cols > 0);
+
     for (int r = 0; r < rows; ++r) {
         for (int c = 0; c < cols; ++c) {
 
@@ -173,6 +182,9 @@ void MineSweeperTable::toggleMark(int r, int c){
 }
 void MineSweeperTable::checkWin(){
 
+    // Pre condition
+    assert(rows > 0 && cols > 0);
+
     int openCount = 0;
     for (int r = 0; r < rows; ++r) {
         for (int c = 0; c < cols; ++c) {
@@ -188,6 +200,7 @@ void MineSweeperTable::checkWin(){
 void MineSweeperTable::checkInvariant() const{
 
     assert(rows > 0 && cols > 0);
+    assert(bombCount > 0 && bombCount < rows * cols);
     
     int actualBombCount = 0;
     int openCount = 0;
